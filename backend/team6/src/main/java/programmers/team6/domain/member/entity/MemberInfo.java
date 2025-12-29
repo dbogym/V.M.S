@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import programmers.team6.global.entity.BaseEntity;
 
 @Entity
-@Table(name = "MemberInfo")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberInfo extends BaseEntity {

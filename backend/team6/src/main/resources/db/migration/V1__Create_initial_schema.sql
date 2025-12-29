@@ -11,7 +11,7 @@ CREATE TABLE code (
 );
 
 -- MemberInfo table init
-CREATE TABLE MemberInfo (
+CREATE TABLE memberInfo (
                             member_info_id BIGINT AUTO_INCREMENT NOT NULL,
                             createdAt     datetime              NULL,
                             updatedAt     datetime              NULL,
@@ -22,7 +22,7 @@ CREATE TABLE MemberInfo (
 );
 
 -- Dept table init
-CREATE TABLE Dept (
+CREATE TABLE dept (
                       dept_id        BIGINT AUTO_INCREMENT NOT NULL,
                       createdAt     datetime              NULL,
                       updatedAt     datetime              NULL,
@@ -33,7 +33,7 @@ CREATE TABLE Dept (
 );
 
 -- Member table init
-CREATE TABLE Member (
+CREATE TABLE member (
                         member_id      BIGINT AUTO_INCREMENT NOT NULL,
                         createdAt     datetime              NULL,
                         updatedAt     datetime              NULL,
@@ -48,7 +48,7 @@ CREATE TABLE Member (
 );
 
 -- VacationRequest table init
-CREATE TABLE VacationRequest (
+CREATE TABLE vacationRequest (
                                  vacation_request_id BIGINT AUTO_INCREMENT NOT NULL,
                                  createdAt          datetime              NULL,
                                  updatedAt          datetime              NULL,
@@ -63,7 +63,7 @@ CREATE TABLE VacationRequest (
 );
 
 -- ApprovalStep table init
-CREATE TABLE ApprovalStep (
+CREATE TABLE approvalStep (
                               approval_step_id    BIGINT AUTO_INCREMENT NOT NULL,
                               createdAt          datetime              NULL,
                               updatedAt          datetime              NULL,
@@ -75,8 +75,8 @@ CREATE TABLE ApprovalStep (
                               CONSTRAINT pk_approvalstep PRIMARY KEY (approval_step_id)
 );
 
--- VacationInfo table init (수정됨)
-CREATE TABLE VacationInfo (
+-- VacationInfo table init
+CREATE TABLE vacationInfo (
                               vacationId   INT AUTO_INCREMENT NOT NULL,  -- Java Entity와 일치
                               createdAt    datetime           NULL,
                               updatedAt    datetime           NULL,
@@ -89,7 +89,7 @@ CREATE TABLE VacationInfo (
 );
 
 -- VacationInfoLog table init
-CREATE TABLE VacationInfoLog (
+CREATE TABLE vacationInfoLog (
                                  id            BIGINT AUTO_INCREMENT NOT NULL,
                                  totalCount    DOUBLE                NOT NULL,  -- Java Entity와 일치
                                  useCount      DOUBLE                NOT NULL,  -- Java Entity와 일치
@@ -100,26 +100,26 @@ CREATE TABLE VacationInfoLog (
 );
 
 -- Foreign Key 제약조건들
-ALTER TABLE Dept
+ALTER TABLE dept
     ADD CONSTRAINT FK_DEPT_ON_DEPT_LEADER FOREIGN KEY (dept_leader_id) REFERENCES Member (member_id);
 
-ALTER TABLE Member
+ALTER TABLE member
     ADD CONSTRAINT FK_MEMBER_ON_DEPT FOREIGN KEY (dept_id) REFERENCES Dept (dept_id);
 
-ALTER TABLE Member
+ALTER TABLE member
     ADD CONSTRAINT FK_MEMBER_ON_MEMBER_INFO FOREIGN KEY (member_info_id) REFERENCES MemberInfo (member_info_id);
 
-ALTER TABLE Member
+ALTER TABLE member
     ADD CONSTRAINT FK_MEMBER_ON_POSITION FOREIGN KEY (position_id) REFERENCES code (code_id);
 
-ALTER TABLE VacationRequest
+ALTER TABLE vacationRequest
     ADD CONSTRAINT FK_VACATION_REQUEST_ON_MEMBER FOREIGN KEY (member_id) REFERENCES Member (member_id);
 
-ALTER TABLE VacationRequest
+ALTER TABLE vacationRequest
     ADD CONSTRAINT FK_VACATION_REQUEST_ON_TYPE_CODE FOREIGN KEY (type_code) REFERENCES code (code_id);
 
-ALTER TABLE ApprovalStep
+ALTER TABLE approvalStep
     ADD CONSTRAINT FK_APPROVALSTEP_ON_MEMBER FOREIGN KEY (member_id) REFERENCES Member (member_id);
 
-ALTER TABLE ApprovalStep
+ALTER TABLE approvalStep
     ADD CONSTRAINT FK_APPROVALSTEP_ON_VACATION_REQUEST FOREIGN KEY (vacation_request_id) REFERENCES VacationRequest (vacation_request_id);

@@ -1,5 +1,6 @@
 package programmers.team6.domain.member.entity;
 
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 import programmers.team6.global.entity.BaseEntity;
 
 @Entity
+@Table(name = "MemberInfo")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberInfo extends BaseEntity {
